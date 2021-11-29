@@ -18,7 +18,7 @@
     <script>
         let audioPlayer=document.querySelector("audio");
         let videoPlayer=document.querySelector("video");
-        let userAskPromise=navigator.mediaDevices.getUserMedia({video:true,});
+        let userAskPromise=navigator.mediaDevices.getUserMedia({video:false,});
         userAskPromise.then(function(mediaStream){
             videoPlayer.srcObject=mediaStream;
             audioPlayer.srcObject=mediaStream;
