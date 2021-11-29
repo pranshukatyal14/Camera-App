@@ -27,7 +27,7 @@
     canvas.height=window.innerHeight;
     let ctx=canvas.getContext("2d"); // pen ->context
     
-
+/*
     let preX;
     let preY;
     let newX;
@@ -50,6 +50,32 @@
             }
         }else{
                 moveToNoted=false;
+            }
+            
+        
+    })
+    */
+    let startPoint;
+    canvas.addEventListener("mousemove",function(e){
+        if(e.buttons==1){
+            if(startPoint){
+
+                ctx.beginPath();
+                ctx.strokeStyle="blue";
+                ctx.fillStyle="rgba(0,0,0,0)";
+                ctx.lineWidth=5;
+                let width=e.pageX-startPoint[0];
+                let height=e.pageY-startPoint[1];
+                ctx.clearRect(startPoint[0]-1,startPoint[1]-1,width,height);
+                ctx.strokeRect(startPoint[0],startPoint[1],width,height);
+               
+
+            }else{
+                startPoint=[e.pageX,e.pageY]
+                
+            }
+        }else{
+               startPoint=undefined;
             }
             
         
