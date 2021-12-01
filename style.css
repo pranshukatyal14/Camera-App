@@ -29,3 +29,17 @@ video{
     width: 100%;
 }
 
+.filter-container{
+    border: 1px solid white;
+    position: fixed;
+    top: 20vh;
+    left: 5vw;
+    height: 60vh;
+    width: 6vw;
+}
+
+.filter{
+    border: 1px solid white;
+    height: 20%;
+    
+}

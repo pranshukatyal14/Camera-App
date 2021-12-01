@@ -60,3 +60,22 @@ function capture(){
     link.click();
 
 }
+let filter= "";
+
+let allFilters=document.querySelectorAll(".filter");
+for(let i of allFilters){
+    i.addEventListener("click",function(e){
+        filter=e.currentTarget.style.backgroundColor;
+        addFilterToScreen(filter);
+    })
+}
+
+function addFilterToScreen(filter){
+    let filterScreen=document.createElement("div");
+    filterScreen.style.height="100vh";
+    filterScreen.style.width="100vw";
+    filterScreen.style.position="fixed";
+    filterScreen.style.top=0;
+    filterScreen.style.backgroundColor=filter;
+    document.querySelector("body").append(filterScreen);
+}
