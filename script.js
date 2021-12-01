@@ -54,6 +54,10 @@ function capture(){
 
     let ctx=canvas.getContext("2d");
     ctx.drawImage(videoPlayer,0,0);
+    if(filter!=""){
+        ctx.fillStyle=filter;
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+    }
     let link=document.createElement("a");
     link.download="img.png";
     link.href=canvas.toDataURL();
@@ -71,11 +75,19 @@ for(let i of allFilters){
 }
 
 function addFilterToScreen(filter){
+    let prevScreenFilter= document.querySelector(".screen-filter")
+   if(prevScreenFilter){
+       prevScreenFilter.remove();
+   }
     let filterScreen=document.createElement("div");
-    filterScreen.style.height="100vh";
-    filterScreen.style.width="100vw";
-    filterScreen.style.position="fixed";
-    filterScreen.style.top=0;
+    filterScreen.classList.add("screen-filter");
+    filterScreen.style.height=videoPlayer.offsetHeight+ "px";
+    filterScreen.style.width=videoPlayer.offsetWidth+"px";
+
+   // filterScreen.style.position="fixed";
+   // filterScreen.style.top=0;
     filterScreen.style.backgroundColor=filter;
-    document.querySelector("body").append(filterScreen);
+    document.querySelector(".filter-screen-parent").append(filterScreen);
+
+
 }

@@ -10,7 +10,10 @@ body{
    /* position: fixed; */
     
     height: 100vh;
-    background-color:black;
+   background-color: black;
+   display: flex;
+    justify-content: center;
+    
   
 }
 #record-video{
@@ -42,4 +45,13 @@ video{
     border: 1px solid white;
     height: 20%;
     
+}
+.filter-screen-parent{
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+
 }
