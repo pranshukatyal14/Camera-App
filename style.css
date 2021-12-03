@@ -8,7 +8,7 @@ body{
 
 .video-container{
    /* position: fixed; */
-    
+
     height: 100vh;
    background-color: black;
    display: flex;
@@ -54,4 +54,9 @@ video{
     position: fixed;
     top: 0;
 
+}
+.zoom{
+    position: absolute;
+    bottom: 30px;
+    left: 50vw;
 }

@@ -2,14 +2,37 @@ let constraints={video:true};
 
 let videoPlayer=document.querySelector("video");
 
+let frame=document.querySelector(".frame");
+frame.style["max-width"]=videoPlayer.offsetWidth;
 let vidRecordBtn=document.querySelector("#record-video");
 
 let captureBtn=document.querySelector("#click-picture");
+
 
 let recordState=false;
 let chunks=[];
 
 let mediaRecorder;
+let zoom=1;
+let frameSet
+
+let zoomIn=document.querySelector(".zoom-in");
+zoomIn.addEventListener("click",function(){
+    if(zoom<2.5){
+
+    zoom+=0.1;
+    videoPlayer.style.transform=`scale(${zoom})`;
+    }
+});
+
+let zoomOut=document.querySelector(".zoom-out");
+zoomOut.addEventListener("click",function(){
+    if(zoom>1){
+        zoom-=0.1;
+        videoPlayer.style.transform=`scale(${zoom})`;
+    }
+})
+
 
 captureBtn.addEventListener("click",function(){
     capture();
@@ -47,12 +70,15 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
 })
 
 function capture(){
-    let canvas=document.createElement("canvas");
-    canvas.width=videoPlayer.videoWidth;
-    canvas.height=videoPlayer.videoHeight;
     
+let canvas=document.createElement("canvas");
+canvas.width=videoPlayer.videoWidth;
+canvas.height=videoPlayer.videoHeight;
 
     let ctx=canvas.getContext("2d");
+    ctx.translate(canvas.width/2,canvas.height/2);
+    ctx.scale(zoom,zoom);
+    ctx.translate(-(canvas.width/2),-(canvas.height/2));
     ctx.drawImage(videoPlayer,0,0);
     if(filter!=""){
         ctx.fillStyle=filter;
@@ -91,3 +117,7 @@ function addFilterToScreen(filter){
 
 
 }
+
+navigator.mediaDevices.enumerateDevices().then(function(devices){
+    console.log(devices);
+})
