@@ -42,11 +42,11 @@ vidRecordBtn.addEventListener("click",function(){
     if(!recordState){
         mediaRecorder.start();
         recordState=true;
-        vidRecordBtn.innerText="Recording...";
+        vidRecordBtn.innerHTML=`<img src="https://img.icons8.com/flat-round/60/000000/stop.png"/>`;
     }else{
         mediaRecorder.stop();
         recordState=false;
-        vidRecordBtn.innerText="Record";
+        vidRecordBtn.innerHTML=`<img src="https://img.icons8.com/flat-round/60/000000/record.png"/>`;
     }  
 });
 
@@ -62,10 +62,11 @@ navigator.mediaDevices.getUserMedia(constraints).then(function(mediaStream) {
         let blob  = new Blob(chunks, {type: "video/mp4"});
         chunks = [];
         let blobUrl = URL.createObjectURL(blob);
-        let a = document.createElement("a");
-        a.href = blobUrl;
-        a.download = "temp.mp4";
-        a.click();
+        addData("video",blobUrl);
+        //let a = document.createElement("a");
+       // a.href = blobUrl;
+      //  a.download = "temp.mp4";
+       // a.click();
     }
 })
 
@@ -84,10 +85,11 @@ canvas.height=videoPlayer.videoHeight;
         ctx.fillStyle=filter;
         ctx.fillRect(0,0,canvas.width,canvas.height);
     }
-    let link=document.createElement("a");
-    link.download="img.png";
-    link.href=canvas.toDataURL();
-    link.click();
+    addData("image",canvas.toDataURL());
+    //let link=document.createElement("a");
+   // link.download="img.png";
+    //link.href=canvas.toDataURL();
+   // link.click();
 
 }
 let filter= "";
